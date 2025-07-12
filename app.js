@@ -82,6 +82,9 @@ const stimulusButtons = document.querySelectorAll('.stimulus-btn');
 
 // Initialize the app
 function init() {
+    // Force viewport recalculation on iOS PWA launch
+    forceViewportRecalculation();
+    
     // Add event listeners
     stimulusButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -97,6 +100,7 @@ function init() {
         setTimeout(() => {
             // Force a reflow to ensure proper sizing
             window.scrollTo(0, 0);
+            forceViewportRecalculation();
         }, 100);
     });
 
@@ -119,6 +123,37 @@ function init() {
             .catch(registrationError => {
                 console.log('SW registration failed: ', registrationError);
             });
+    }
+}
+
+// Force viewport recalculation to fix iOS PWA viewport issues
+function forceViewportRecalculation() {
+    // Force a reflow to ensure proper viewport sizing
+    document.body.style.height = '100vh';
+    document.body.style.height = '100dvh';
+    
+    // Trigger a resize event to force recalculation
+    window.dispatchEvent(new Event('resize'));
+    
+    // Scroll to top to ensure proper positioning
+    window.scrollTo(0, 0);
+    
+    // Additional iOS-specific fixes
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        // Force viewport update on iOS
+        const viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport) {
+            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover');
+        }
+        
+        // Ensure body covers full screen
+        document.body.style.position = 'fixed';
+        document.body.style.top = '0';
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+        document.body.style.bottom = '0';
+        document.body.style.width = '100%';
+        document.body.style.height = '100%';
     }
 }
 

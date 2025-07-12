@@ -5,6 +5,12 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -14,12 +20,19 @@ body {
     height: 100dvh; /* Dynamic viewport height for mobile */
     width: 100vw;
     width: 100dvw; /* Dynamic viewport width for mobile */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 #app {
     height: 100%;
     width: 100%;
     position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 /* Screen management */
@@ -224,10 +237,60 @@ body {
         -webkit-user-select: none;
         user-select: none;
         -webkit-tap-highlight-color: transparent;
+        /* iOS viewport fixes */
+        -webkit-overflow-scrolling: touch;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+    
+    html {
+        /* Prevent iOS from adding margins */
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
+    
+    #app {
+        /* Ensure full coverage on iOS */
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
     }
     
     .stimulus-btn {
         -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Additional iOS PWA fixes */
+@media screen and (display-mode: standalone) {
+    body {
+        /* Ensure full screen in standalone mode */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+    }
+    
+    #app {
+        /* Force full coverage */
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
     }
 }
 
