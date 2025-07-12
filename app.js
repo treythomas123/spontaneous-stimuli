@@ -261,7 +261,16 @@ document.addEventListener('visibilitychange', () => {
 });
 
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+    
+    // A brief delay before scrolling helps ensure the layout is settled.
+    // This simple scroll can trigger a viewport recalculation on iOS
+    // and fix the "white bar" issue on initial PWA launch.
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 100);
+});
 
 // Prevent context menu on long press
 document.addEventListener('contextmenu', (e) => {

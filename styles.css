@@ -237,17 +237,6 @@ body {
     }
 }
 
-/* PWA standalone mode fixes */
-@media screen and (display-mode: standalone) {
-    #app {
-        /* Ensure full screen coverage in PWA mode */
-        height: 100vh;
-        height: 100dvh;
-        width: 100vw;
-        width: 100dvw;
-    }
-}
-
 /* Improved animation for stimulus changes - eliminates double flash */
 @keyframes fadeIn {
     0% { 
