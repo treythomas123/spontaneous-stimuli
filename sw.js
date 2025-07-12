@@ -1,10 +1,14 @@
 const CACHE_NAME = 'spontaneous-stimuli-v1';
+const BASE_PATH = '/spontaneous-stimuli'; // GitHub Pages base path
+
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/styles.css',
-    '/app.js',
-    '/manifest.json'
+    BASE_PATH + '/',
+    BASE_PATH + '/index.html',
+    BASE_PATH + '/styles.css',
+    BASE_PATH + '/app.js',
+    BASE_PATH + '/manifest.json',
+    BASE_PATH + '/icons/icon-192x192.png',
+    BASE_PATH + '/icons/icon-512x512.png'
 ];
 
 // Install event
