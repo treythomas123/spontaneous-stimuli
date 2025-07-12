@@ -71,6 +71,7 @@ let currentCategory = null;
 let stimulusInterval = null;
 let isRunning = false;
 let currentStimulusElement = null;
+let lastStimulus = null; // Track the last shown stimulus to avoid repetition
 
 // DOM elements
 const mainMenu = document.getElementById('main-menu');
@@ -150,6 +151,7 @@ function stopStimulus() {
     stimulusContent.innerHTML = '';
     currentStimulusElement = null;
     currentCategory = null;
+    lastStimulus = null; // Reset last stimulus to allow fresh start
 }
 
 // Show next stimulus
@@ -170,17 +172,32 @@ function showNextStimulus() {
 
 // Get random stimulus based on current category
 function getRandomStimulus() {
+    let availableStimuli = [];
+    
     if (currentCategory === 'mixed') {
         // Randomly select from all categories
         const categories = ['colors', 'shapes', 'numbers', 'letters'];
         const randomCategory = categories[Math.floor(Math.random() * categories.length)];
-        const categoryStimuli = stimuli[randomCategory];
-        return categoryStimuli[Math.floor(Math.random() * categoryStimuli.length)];
+        availableStimuli = stimuli[randomCategory];
     } else {
         // Use current category
-        const categoryStimuli = stimuli[currentCategory];
-        return categoryStimuli[Math.floor(Math.random() * categoryStimuli.length)];
+        availableStimuli = stimuli[currentCategory];
     }
+    
+    // Filter out the last shown stimulus to avoid repetition
+    let filteredStimuli = availableStimuli;
+    if (lastStimulus && availableStimuli.length > 1) {
+        filteredStimuli = availableStimuli.filter(stimulus => 
+            !(stimulus.type === lastStimulus.type && 
+              stimulus.value === lastStimulus.value)
+        );
+    }
+    
+    // Select random stimulus from filtered list
+    const selectedStimulus = filteredStimuli[Math.floor(Math.random() * filteredStimuli.length)];
+    lastStimulus = selectedStimulus;
+    
+    return selectedStimulus;
 }
 
 // Get random delay between 2-30 seconds
