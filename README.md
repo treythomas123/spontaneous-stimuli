@@ -5,7 +5,7 @@ A Progressive Web App (PWA) designed for occupational therapy, providing spontan
 ## Features
 
 - **5 Stimulus Categories**: Colors, Shapes, Numbers, Letters, and Mixed
-- **Random Timing**: Each stimulus displays for 2-5 seconds randomly
+- **Random Timing**: Each stimulus displays for 2-30 seconds randomly
 - **Full-Screen Experience**: Optimized for iPhone installation
 - **Responsive Design**: Works in both portrait and landscape orientations
 - **PWA Ready**: Can be installed on iPhone and Android devices
