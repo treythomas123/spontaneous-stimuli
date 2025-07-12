@@ -12,19 +12,20 @@ html {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
+}
+
+#app {
     height: 100vh;
     height: 100dvh;
     width: 100vw;
     width: 100dvw;
-}
-
-#app {
-    height: 100%;
-    width: 100%;
     position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    overflow: hidden;
 }
 
 /* Screen management */
@@ -238,7 +239,7 @@ body {
 
 /* PWA standalone mode fixes */
 @media screen and (display-mode: standalone) {
-    body {
+    #app {
         /* Ensure full screen coverage in PWA mode */
         height: 100vh;
         height: 100dvh;
