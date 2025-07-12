@@ -183,9 +183,9 @@ function getRandomStimulus() {
     }
 }
 
-// Get random delay between 2-5 seconds
+// Get random delay between 2-30 seconds
 function getRandomDelay() {
-    return Math.random() * 3000 + 2000; // 2000-5000ms
+    return Math.random() * 28000 + 2000; // 2000-30000ms
 }
 
 // Display stimulus with improved animation
