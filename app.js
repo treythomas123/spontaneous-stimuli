@@ -220,7 +220,6 @@ function displayStimulus(stimulus) {
         case 'color':
             element.className += ' color-stimulus';
             element.style.backgroundColor = stimulus.bgColor;
-            element.textContent = stimulus.name;
             break;
             
         case 'shape':
