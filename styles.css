@@ -103,6 +103,7 @@ body {
 #stimulus-display {
     background: #000;
     position: relative;
+    transition: background-color 0.3s ease;
 }
 
 .back-button {
@@ -143,31 +144,9 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Color stimuli */
-.color-stimulus {
-    width: 80%;
-    height: 80%;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: clamp(2rem, 10vw, 6rem);
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
 /* Shape stimuli */
 .shape-stimulus {
-    width: 80%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: clamp(4rem, 25vw, 15rem);
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
 }
 
 /* Number and letter stimuli */

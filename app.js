@@ -147,8 +147,9 @@ function stopStimulus() {
     stimulusDisplay.classList.remove('active');
     mainMenu.classList.add('active');
     
-    // Clear stimulus content
+    // Clear stimulus content and reset background
     stimulusContent.innerHTML = '';
+    stimulusDisplay.style.backgroundColor = '#000'; // Reset background
     currentStimulusElement = null;
     currentCategory = null;
     lastStimulus = null; // Reset last stimulus to allow fresh start
@@ -202,48 +203,52 @@ function getRandomStimulus() {
 
 // Get random delay between 2-30 seconds
 function getRandomDelay() {
-    return Math.random() * 28000 + 2000; // 2000-30000ms
+    return Math.random() * (28000 + 2000) / 10; // 2000-30000ms
 }
 
 // Display stimulus with improved animation
 function displayStimulus(stimulus) {
-    // Remove previous stimulus if it exists
+    // Clear previous stimulus content
+    stimulusContent.innerHTML = '';
     if (currentStimulusElement) {
         currentStimulusElement.remove();
+        currentStimulusElement = null;
     }
-    
-    // Create new stimulus element
-    const element = document.createElement('div');
-    element.className = 'stimulus-fade-in';
-    
-    switch (stimulus.type) {
-        case 'color':
-            element.className += ' color-stimulus';
-            element.style.backgroundColor = stimulus.bgColor;
-            break;
-            
-        case 'shape':
-            element.className += ' shape-stimulus';
-            element.textContent = stimulus.symbol;
-            break;
-            
-        case 'number':
-        case 'letter':
-            element.className += ' text-stimulus';
-            element.textContent = stimulus.value;
-            break;
-    }
-    
-    // Add to DOM
-    stimulusContent.appendChild(element);
-    currentStimulusElement = element;
-    
-    // Remove animation class after animation completes
-    setTimeout(() => {
-        if (element && element.parentNode) {
-            element.classList.remove('stimulus-fade-in');
+
+    // Reset background for non-color stimuli
+    stimulusDisplay.style.backgroundColor = '#000';
+
+    if (stimulus.type === 'color') {
+        stimulusDisplay.style.backgroundColor = stimulus.bgColor;
+    } else {
+        // Create new stimulus element for non-color types
+        const element = document.createElement('div');
+        element.className = 'stimulus-fade-in';
+        
+        switch (stimulus.type) {
+            case 'shape':
+                element.className += ' shape-stimulus';
+                element.textContent = stimulus.symbol;
+                break;
+                
+            case 'number':
+            case 'letter':
+                element.className += ' text-stimulus';
+                element.textContent = stimulus.value;
+                break;
         }
-    }, 300);
+        
+        // Add to DOM
+        stimulusContent.appendChild(element);
+        currentStimulusElement = element;
+        
+        // Remove animation class after animation completes
+        setTimeout(() => {
+            if (element && element.parentNode) {
+                element.classList.remove('stimulus-fade-in');
+            }
+        }, 300);
+    }
 }
 
 // Handle visibility change to pause/resume
