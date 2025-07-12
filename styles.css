@@ -8,7 +8,6 @@
 html {
     height: 100%;
     width: 100%;
-    overflow: hidden;
 }
 
 body {
@@ -17,22 +16,15 @@ body {
     color: white;
     overflow: hidden;
     height: 100vh;
-    height: 100dvh; /* Dynamic viewport height for mobile */
+    height: 100dvh;
     width: 100vw;
-    width: 100dvw; /* Dynamic viewport width for mobile */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100dvw;
 }
 
 #app {
     height: 100%;
     width: 100%;
     position: relative;
-    min-height: 100vh;
-    min-height: 100dvh;
 }
 
 /* Screen management */
@@ -237,28 +229,6 @@ body {
         -webkit-user-select: none;
         user-select: none;
         -webkit-tap-highlight-color: transparent;
-        /* iOS viewport fixes */
-        -webkit-overflow-scrolling: touch;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-    }
-    
-    html {
-        /* Prevent iOS from adding margins */
-        -webkit-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-    }
-    
-    #app {
-        /* Ensure full coverage on iOS */
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
     }
     
     .stimulus-btn {
@@ -266,31 +236,14 @@ body {
     }
 }
 
-/* Additional iOS PWA fixes */
+/* PWA standalone mode fixes */
 @media screen and (display-mode: standalone) {
     body {
-        /* Ensure full screen in standalone mode */
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100vw;
+        /* Ensure full screen coverage in PWA mode */
         height: 100vh;
         height: 100dvh;
-    }
-    
-    #app {
-        /* Force full coverage */
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-        min-height: 100vh;
-        min-height: 100dvh;
+        width: 100vw;
+        width: 100dvw;
     }
 }
 
