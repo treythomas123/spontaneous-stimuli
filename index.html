@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Spontaneous Stimuli">
+    <meta name="theme-color" content="#4A90E2">
+    <meta name="description" content="Spontaneous stimuli tool for occupational therapy">
+    
+    <title>Spontaneous Stimuli</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Main Menu Screen -->
+        <div id="main-menu" class="screen active">
+            <h1>Spontaneous Stimuli</h1>
+            <div class="button-grid">
+                <button class="stimulus-btn" data-category="colors">
+                    <div class="btn-icon">🎨</div>
+                    <span>Colors</span>
+                </button>
+                <button class="stimulus-btn" data-category="shapes">
+                    <div class="btn-icon">🔷</div>
+                    <span>Shapes</span>
+                </button>
+                <button class="stimulus-btn" data-category="numbers">
+                    <div class="btn-icon">🔢</div>
+                    <span>Numbers</span>
+                </button>
+                <button class="stimulus-btn" data-category="letters">
+                    <div class="btn-icon">🔤</div>
+                    <span>Letters</span>
+                </button>
+                <button class="stimulus-btn" data-category="mixed">
+                    <div class="btn-icon">🎲</div>
+                    <span>Mixed</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Stimulus Display Screen -->
+        <div id="stimulus-display" class="screen">
+            <button id="back-btn" class="back-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <div id="stimulus-content" class="stimulus-content">
+                <!-- Stimulus will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="sw.js"></script>
+</body>
+</html> 
